@@ -51,7 +51,7 @@ const Signup = () => {
             <FormInput label='Email' type="email" required onChange={changeHandler} name='email' value={email}/>
             <FormInput label='Password' type="password" required onChange={changeHandler} name='password' value={password}/>
             <FormInput label='Confirm Password' type="password" required onChange={changeHandler} name='confirmpassword' value={confirmpassword}/>
-            <Button children={'Signup'} buttonType='inverted' type="submit"/>
+            <Button children={'Signup'}  type="submit"/>
         </form>
     </div>
   )

@@ -3,6 +3,7 @@
 // import { getRedirectResult } from 'firebase/auth';
 import Signup from '../../components/signup-form/signupForm.component';
 import Signin from '../../components/signin-form/signinForm.component';
+import "./authentication.style.scss";
 
 const Authentication = () => {
   // useEffect(() => {
@@ -14,9 +15,7 @@ const Authentication = () => {
   // }, []);
  
   return (
-    <div>
-        Authentication
-        {/* <button onClick={signInWithGoogleRedirect}>SignIn with Google Redirect</button> */}
+    <div className='authentication-container'>
         <Signin/>
         <Signup/>
     </div>
