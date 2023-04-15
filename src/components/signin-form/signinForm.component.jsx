@@ -20,7 +20,20 @@ const Signin = () => {
       console.log(response);
     }
     catch(error){
-      console.log(error);
+    
+      // if(error.code==='auth/wronmg-password'){
+      //   alert('incorrect password for email');
+      // }
+      switch(error.code){
+        case 'auth/wrong-password':
+          alert('incorrect password for email');
+          break;
+        case 'auth/user-not-found':
+          alert('no user associated with this email');
+          break;
+        default:
+          console.log(error);
+      }
     }
   }
 
@@ -43,8 +56,8 @@ const Signin = () => {
             <FormInput label='Email' type="email" required onChange={changeHandler} name='email' value={email}/>
             <FormInput label='Password' type="password" required onChange={changeHandler} name='password' value={password}/>
             <div className="buttons-container">
-              <Button children={'Signin'} buttonType='inverted' type="submit"/>
-              <Button children={'SignIn with Google'} buttonType='google' onClick={logGoogleuser}/>
+              <Button children={'Signin'}  type="submit"/>
+              <Button type='button' children={'SignIn with Google'} buttonType='google' onClick={logGoogleuser}/>
             </div>
         </form>
     </div>
