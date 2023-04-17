@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import FormInput from "../formsinput/forminput.component";
 import "./signin-form.style.scss";
 import {createUserDocumentFromAuth, signInWithGooglePopup, signInWithGoogleRedirect, signinWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 import Button from "../button/button.component";
+import { UserContext } from "../../context/user.context";
 
 const defaultformFields = {
     email:'',
@@ -12,6 +13,11 @@ const Signin = () => {
   const [Fields,setFields] = useState(defaultformFields);
   const {email, password} = Fields;
   // console.log(Fields)
+ 
+  const {setcurrentUser} = useContext(UserContext);
+
+
+
 
   const handlesubmit = async(event)=>{
     event.preventDefault();
@@ -39,8 +45,9 @@ const Signin = () => {
 
   const logGoogleuser = async ()=>{ 
     const {user} = await signInWithGooglePopup(); // user is a separate data inside response which we get here by destructuring.
+    setcurrentUser(user);
     const useresponse = await createUserDocumentFromAuth(user); 
-    console.log(useresponse);
+    // console.log(useresponse);
   }
 
 
