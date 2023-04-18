@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { onAuthStateChanges,createUserDocumentFromAuth } from "../utils/firebase/firebase.utils";
 
 // Storage part stores the default value which we wanna access
 export const UserContext =createContext({ 
@@ -14,5 +15,20 @@ export const UserContext =createContext({
 export const UserProvider =({children})=>{
     const [currentUser, setcurrentUser] = useState(null);
     const value ={currentUser,setcurrentUser}
+    
+
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanges((user)=>{
+        console.log(user);
+        if(user){
+          createUserDocumentFromAuth(user); 
+        }
+        setcurrentUser(user);
+      })
+      return unsubscribe;
+    }, [])
+    
+
+
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }

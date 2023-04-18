@@ -24,6 +24,7 @@ const Signin = () => {
     try{
       const response = await signinWithEmailAndPassword(email,password);
       console.log(response);
+      setFields(defaultformFields)
     }
     catch(error){
     
@@ -45,9 +46,6 @@ const Signin = () => {
 
   const logGoogleuser = async ()=>{ 
     const {user} = await signInWithGooglePopup(); // user is a separate data inside response which we get here by destructuring.
-    setcurrentUser(user);
-    const useresponse = await createUserDocumentFromAuth(user); 
-    // console.log(useresponse);
   }
 
 

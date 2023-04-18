@@ -3,6 +3,8 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "
 import FormInput from "../formsinput/forminput.component";
 import "./signup-form.style.scss";
 import Button from "../button/button.component";
+import { useContext } from "react";
+import { UserContext } from "../../context/user.context";
 
 const defaultformFields = {
     displayName:'',
@@ -14,6 +16,7 @@ const Signup = () => {
   const [Fields,setFields] = useState(defaultformFields);
   const {displayName, email, password, confirmpassword} = Fields;
   // console.log(Fields)
+
 
   const handlesubmit = async(event)=>{
     event.preventDefault();// prevents the default action belonging to this event to occur.
@@ -35,6 +38,7 @@ const Signup = () => {
         console.log(error);
       }
     }
+   
   }
 
 
