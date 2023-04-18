@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app'; // creates app function based on some config.
-import {getAuth,signInWithRedirect,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth';
+import {getAuth,signInWithRedirect,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut,onAuthStateChanged} from 'firebase/auth';
 
 import {getFirestore,doc,getDoc,setDoc} from 'firebase/firestore';
 
@@ -75,3 +75,11 @@ export const signinWithEmailAndPassword=async(email,password)=>{
   if(!email || !password) return;
   return await signInWithEmailAndPassword(auth,email,password);
 }
+
+
+//Siging out user.
+export const signoutUser = ()=> signOut(auth);
+
+
+//Triggers on the state changes.
+export const onAuthStateChanges = (callback)=> onAuthStateChanged(auth, callback);
