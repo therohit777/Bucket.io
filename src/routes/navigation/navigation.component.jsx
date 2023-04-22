@@ -5,6 +5,8 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import { signoutUser } from "../../utils/firebase/firebase.utils";
+import CardIcon from "../../components/card-icons/card-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.somponent";
 
 const Navigation = () => {
 
@@ -19,8 +21,6 @@ const Navigation = () => {
             </Link>
             <div className="nav-links-container">
                 <Link className='nav-link' to='/shop'>SHOP</Link>
-            </div>
-            <div className="nav-links-container">
                 <Link className='nav-link' to='/auth'>
                     {
                         currentUser?(
@@ -30,7 +30,9 @@ const Navigation = () => {
                         )
                     }
                 </Link>
+                <CardIcon/>
             </div>
+            <CartDropdown/>
         </div>
         <Outlet/> 
      </Fragment>
